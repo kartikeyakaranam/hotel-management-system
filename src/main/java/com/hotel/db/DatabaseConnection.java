@@ -18,8 +18,8 @@ import java.sql.Statement;
 public class DatabaseConnection {
 
     private static final String URL      = "jdbc:postgresql://localhost:5432/hms_pro_db";
-    private static final String USERNAME = "postgres";   // ← change if needed
-    private static final String PASSWORD = "1983";   // ← change if needed
+    private static final String USERNAME = System.getenv().getOrDefault("HMS_DB_USER", "postgres");
+    private static final String PASSWORD = System.getenv().getOrDefault("HMS_DB_PASSWORD", "");
 
     private static Connection connection = null;
 
