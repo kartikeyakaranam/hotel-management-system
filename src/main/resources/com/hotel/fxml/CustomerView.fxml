@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane dividerPositions="0.35" xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.hotel.controller.CustomerController"
+           styleClass="tab-content">
+
+    <!-- ── LEFT: FORM ──────────────────────────────────────── -->
+    <VBox styleClass="form-panel" spacing="14">
+        <Label text="Customer Details" styleClass="section-title"/>
+
+        <Label text="Full Name *" styleClass="field-label"/>
+        <TextField fx:id="txtName" promptText="e.g. Rahul Sharma" styleClass="dark-field"/>
+
+        <Label text="Contact Number * (exactly 10 digits)" styleClass="field-label"/>
+        <TextField fx:id="txtContact" promptText="e.g. 9876543210" styleClass="dark-field"/>
+
+        <Label text="Email (optional)" styleClass="field-label"/>
+        <TextField fx:id="txtEmail" promptText="e.g. rahul@email.com" styleClass="dark-field"/>
+
+        <Label text="Address (optional)" styleClass="field-label"/>
+        <TextField fx:id="txtAddress" promptText="City, State" styleClass="dark-field"/>
+
+        <Region VBox.vgrow="ALWAYS"/>
+
+        <HBox spacing="8">
+            <Button text="➕ Add"    onAction="#handleAddCustomer"    styleClass="btn-primary"   HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+            <Button text="✏ Update" onAction="#handleUpdateCustomer"  styleClass="btn-warning"   HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+        </HBox>
+        <HBox spacing="8">
+            <Button text="🗑 Delete" onAction="#handleDeleteCustomer"  styleClass="btn-danger"    HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+            <Button text="✖ Clear"  onAction="#handleClear"            styleClass="btn-secondary" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+        </HBox>
+    </VBox>
+
+    <!-- ── RIGHT: TABLE ────────────────────────────────────── -->
+    <VBox styleClass="table-panel" spacing="10">
+        <Label text="All Customers" styleClass="section-title"/>
+
+        <TableView fx:id="tblCustomers" VBox.vgrow="ALWAYS" styleClass="dark-table">
+            <columns>
+                <TableColumn fx:id="colId"      text="ID"      prefWidth="60"/>
+                <TableColumn fx:id="colName"    text="Name"    prefWidth="160"/>
+                <TableColumn fx:id="colContact" text="Contact" prefWidth="130"/>
+                <TableColumn fx:id="colEmail"   text="Email"   prefWidth="180"/>
+                <TableColumn fx:id="colAddress" text="Address" prefWidth="180"/>
+            </columns>
+            <placeholder><Label text="No customers found." styleClass="empty-label"/></placeholder>
+        </TableView>
+    </VBox>
+</SplitPane>

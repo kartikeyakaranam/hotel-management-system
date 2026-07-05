@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane dividerPositions="0.35" xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.hotel.controller.RoomController"
+           styleClass="tab-content">
+
+    <!-- ── LEFT: FORM ──────────────────────────────────────── -->
+    <VBox styleClass="form-panel" spacing="14">
+        <Label text="Room Details" styleClass="section-title"/>
+
+        <Label text="Room Number" styleClass="field-label"/>
+        <TextField fx:id="txtRoomNumber" promptText="e.g. 101" styleClass="dark-field"/>
+
+        <Label text="Room Type" styleClass="field-label"/>
+        <ComboBox fx:id="cmbRoomType" maxWidth="Infinity" styleClass="dark-combo"/>
+
+        <Label text="Price Per Day (₹)" styleClass="field-label"/>
+        <TextField fx:id="txtPrice" promptText="e.g. 2500.00" styleClass="dark-field"/>
+
+        <CheckBox fx:id="chkAvailable" text="Available" styleClass="dark-check" selected="true"/>
+
+        <Region VBox.vgrow="ALWAYS"/>
+
+        <HBox spacing="8">
+            <Button text="➕ Add"    onAction="#handleAddRoom"    styleClass="btn-primary"   HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+            <Button text="✏ Update" onAction="#handleUpdateRoom"  styleClass="btn-warning"   HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+        </HBox>
+        <HBox spacing="8">
+            <Button text="🗑 Delete" onAction="#handleDeleteRoom"  styleClass="btn-danger"    HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+            <Button text="✖ Clear"  onAction="#handleClear"        styleClass="btn-secondary" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+        </HBox>
+    </VBox>
+
+    <!-- ── RIGHT: TABLE ────────────────────────────────────── -->
+    <VBox styleClass="table-panel" spacing="10">
+        <HBox spacing="12" alignment="CENTER_LEFT">
+            <Label text="All Rooms" styleClass="section-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <RadioButton fx:id="rbAll"       text="All"       toggleGroup="$filterGroup" selected="true" onAction="#handleFilter" styleClass="dark-radio"/>
+            <RadioButton fx:id="rbAvailable" text="Available" toggleGroup="$filterGroup"                 onAction="#handleFilter" styleClass="dark-radio"/>
+            <fx:define>
+                <ToggleGroup fx:id="filterGroup"/>
+            </fx:define>
+        </HBox>
+
+        <TableView fx:id="tblRooms" VBox.vgrow="ALWAYS" styleClass="dark-table">
+            <columns>
+                <TableColumn fx:id="colRoomNo"  text="Room #"      prefWidth="90"/>
+                <TableColumn fx:id="colType"    text="Type"        prefWidth="120"/>
+                <TableColumn fx:id="colPrice"   text="Price/Day"   prefWidth="130"/>
+                <TableColumn fx:id="colStatus"  text="Status"      prefWidth="130"/>
+            </columns>
+            <placeholder><Label text="No rooms found." styleClass="empty-label"/></placeholder>
+        </TableView>
+    </VBox>
+</SplitPane>

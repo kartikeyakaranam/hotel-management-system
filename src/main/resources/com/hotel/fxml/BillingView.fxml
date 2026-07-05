@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.hotel.controller.BillingController"
+      styleClass="tab-content" spacing="16">
+
+    <!-- ── TOP: BILL GENERATOR ─────────────────────────────── -->
+    <HBox spacing="20">
+
+        <!-- Input + Preview -->
+        <VBox styleClass="form-panel" spacing="12" HBox.hgrow="ALWAYS">
+            <Label text="Generate Bill" styleClass="section-title"/>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Booking ID:" styleClass="field-label"/>
+                <TextField fx:id="txtBookingId" promptText="Enter Booking ID"
+                           styleClass="dark-field" prefWidth="160"/>
+                <Button text="🔍 Preview" onAction="#handlePreview" styleClass="btn-secondary"/>
+            </HBox>
+
+            <!-- Bill Summary Card -->
+            <VBox styleClass="bill-card" spacing="8">
+                <Label text="Bill Preview" styleClass="bill-card-title"/>
+                <HBox spacing="12">
+                    <Label text="Customer:" styleClass="bill-label" prefWidth="130"/>
+                    <Label fx:id="lblCustomer" text="–" styleClass="bill-value"/>
+                </HBox>
+                <HBox spacing="12">
+                    <Label text="Room:" styleClass="bill-label" prefWidth="130"/>
+                    <Label fx:id="lblRoom" text="–" styleClass="bill-value"/>
+                </HBox>
+                <HBox spacing="12">
+                    <Label text="Days Stayed:" styleClass="bill-label" prefWidth="130"/>
+                    <Label fx:id="lblDays" text="–" styleClass="bill-value"/>
+                </HBox>
+                <Separator/>
+                <HBox spacing="12">
+                    <Label text="Room Charges:" styleClass="bill-label" prefWidth="130"/>
+                    <Label fx:id="lblRoomCharges" text="–" styleClass="bill-value"/>
+                </HBox>
+                <HBox spacing="12">
+                    <Label text="Service Tax:" styleClass="bill-label" prefWidth="130"/>
+                    <Label fx:id="lblTax" text="–" styleClass="bill-value"/>
+                </HBox>
+                <Separator/>
+                <HBox spacing="12">
+                    <Label text="TOTAL:" styleClass="bill-total-label" prefWidth="130"/>
+                    <Label fx:id="lblTotal" text="–" styleClass="bill-total-value"/>
+                </HBox>
+            </VBox>
+
+            <HBox spacing="10">
+                <Button text="💾 Generate Bill" onAction="#handleGenerateBill"
+                        styleClass="btn-primary" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                <Button text="📤 Export CSV" onAction="#handleExportCSV"
+                        styleClass="btn-success" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+            </HBox>
+        </VBox>
+    </HBox>
+
+    <!-- ── BOTTOM: BILLS TABLE ─────────────────────────────── -->
+    <VBox styleClass="table-panel" VBox.vgrow="ALWAYS" spacing="8">
+        <Label text="Billing History" styleClass="section-title"/>
+        <TableView fx:id="tblBills" VBox.vgrow="ALWAYS" styleClass="dark-table">
+            <columns>
+                <TableColumn fx:id="colBillId"    text="Bill #"    prefWidth="70"/>
+                <TableColumn fx:id="colBookingId" text="Booking #" prefWidth="80"/>
+                <TableColumn fx:id="colCustomer"  text="Customer"  prefWidth="150"/>
+                <TableColumn fx:id="colRoom"      text="Room #"    prefWidth="70"/>
+                <TableColumn fx:id="colDaysCol"   text="Days"      prefWidth="60"/>
+                <TableColumn fx:id="colCharges"   text="Charges"   prefWidth="100"/>
+                <TableColumn fx:id="colTaxCol"    text="Tax"       prefWidth="100"/>
+                <TableColumn fx:id="colTotal"     text="Total ₹"   prefWidth="110"/>
+                <TableColumn fx:id="colDate"      text="Date"      prefWidth="120"/>
+            </columns>
+            <placeholder><Label text="No bills generated yet." styleClass="empty-label"/></placeholder>
+        </TableView>
+    </VBox>
+</VBox>

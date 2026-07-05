@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.fxml.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.hotel.controller.MainController"
+            styleClass="root-pane">
+
+    <!-- ── TOP HEADER ──────────────────────────────────────── -->
+    <top>
+        <HBox styleClass="header-bar" alignment="CENTER_LEFT" spacing="16">
+            <Label text="🏨" style="-fx-font-size:28;"/>
+            <VBox>
+                <Label text="HOTEL MANAGEMENT SYSTEM" styleClass="app-title"/>
+                <Label text="Powered by JavaFX + PostgreSQL" styleClass="app-subtitle"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblDateTime" styleClass="datetime-label"/>
+        </HBox>
+    </top>
+
+    <!-- ── CENTRE: TAB PANE ────────────────────────────────── -->
+    <center>
+        <TabPane styleClass="main-tabs" tabClosingPolicy="UNAVAILABLE">
+
+            <Tab text="📊  Dashboard">
+                <fx:include source="DashboardView.fxml"/>
+            </Tab>
+
+            <Tab text="🛏  Rooms">
+                <fx:include source="RoomView.fxml"/>
+            </Tab>
+
+            <Tab text="👤  Customers">
+                <fx:include source="CustomerView.fxml"/>
+            </Tab>
+
+            <Tab text="📋  Bookings">
+                <fx:include source="BookingView.fxml"/>
+            </Tab>
+
+            <Tab text="💳  Billing">
+                <fx:include source="BillingView.fxml"/>
+            </Tab>
+
+        </TabPane>
+    </center>
+
+    <!-- ── BOTTOM STATUS BAR ───────────────────────────────── -->
+    <bottom>
+        <HBox styleClass="status-bar" alignment="CENTER_LEFT" spacing="12">
+            <Label text="● Connected to hms_pro_db @ localhost:5432" styleClass="status-ok"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="v2.0  |  HMS Pro" styleClass="status-info"/>
+        </HBox>
+    </bottom>
+</BorderPane>

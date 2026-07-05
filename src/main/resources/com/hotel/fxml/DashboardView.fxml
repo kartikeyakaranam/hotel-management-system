@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToWidth="true" styleClass="tab-content"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.hotel.controller.DashboardController">
+
+    <VBox spacing="24" style="-fx-padding:24;">
+
+        <!-- ── Section title ─────────────────────────────────── -->
+        <HBox alignment="CENTER_LEFT" spacing="12">
+            <Label text="📊 Hotel Dashboard" styleClass="section-title"
+                   style="-fx-font-size:20px;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="🔄 Refresh" onAction="#refresh" styleClass="btn-secondary"/>
+        </HBox>
+
+        <!-- ── Stat cards row ────────────────────────────────── -->
+        <HBox spacing="16">
+            <!-- Total Rooms -->
+            <VBox styleClass="dash-card" HBox.hgrow="ALWAYS">
+                <Label text="🏨 Total Rooms"   styleClass="dash-card-title"/>
+                <Label fx:id="lblTotalRooms"   styleClass="dash-card-value" text="–"/>
+            </VBox>
+            <!-- Occupied -->
+            <VBox styleClass="dash-card dash-card-warn" HBox.hgrow="ALWAYS">
+                <Label text="🔴 Occupied"      styleClass="dash-card-title"/>
+                <Label fx:id="lblOccupied"     styleClass="dash-card-value" text="–"/>
+            </VBox>
+            <!-- Available -->
+            <VBox styleClass="dash-card dash-card-ok" HBox.hgrow="ALWAYS">
+                <Label text="🟢 Available"     styleClass="dash-card-title"/>
+                <Label fx:id="lblAvailable"    styleClass="dash-card-value" text="–"/>
+            </VBox>
+            <!-- Active Bookings -->
+            <VBox styleClass="dash-card dash-card-info" HBox.hgrow="ALWAYS">
+                <Label text="📋 Active Bookings"   styleClass="dash-card-title"/>
+                <Label fx:id="lblActiveBookings"    styleClass="dash-card-value" text="–"/>
+            </VBox>
+            <!-- Customers -->
+            <VBox styleClass="dash-card" HBox.hgrow="ALWAYS">
+                <Label text="👤 Customers"     styleClass="dash-card-title"/>
+                <Label fx:id="lblTotalCustomers" styleClass="dash-card-value" text="–"/>
+            </VBox>
+            <!-- Revenue -->
+            <VBox styleClass="dash-card dash-card-revenue" HBox.hgrow="ALWAYS">
+                <Label text="💰 Total Revenue" styleClass="dash-card-title"/>
+                <Label fx:id="lblRevenue"      styleClass="dash-card-value dash-revenue-val" text="–"/>
+            </VBox>
+        </HBox>
+
+        <!-- ── Occupancy bar ─────────────────────────────────── -->
+        <VBox styleClass="dash-section" spacing="10">
+            <Label text="Overall Occupancy" styleClass="dash-section-title"/>
+            <ProgressBar fx:id="pbOccupancy" maxWidth="Infinity" prefHeight="22"
+                         styleClass="dash-occ-bar"/>
+            <Label fx:id="lblOccupancyPct" styleClass="dash-occ-label" text="–"/>
+        </VBox>
+
+        <!-- ── Per-type breakdown ─────────────────────────────── -->
+        <VBox styleClass="dash-section" spacing="14">
+            <Label text="Room Type Breakdown" styleClass="dash-section-title"/>
+            <VBox fx:id="vboxBreakdown" spacing="10"/>
+        </VBox>
+
+    </VBox>
+</ScrollPane>
